@@ -11,7 +11,7 @@ const Chat = () => {
       <div className="chatInfo">
         <span>Name</span>
         <div className="chatIcon">
-          <img src={Cam} />
+          <img src={Cam} /> 
           <img src={Add} />
           <img src={More} />
         </div>
