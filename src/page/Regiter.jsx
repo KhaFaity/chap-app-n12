@@ -4,13 +4,14 @@ import { useNavigate, Link } from "react-router-dom";
 import "../style.scss"
 import "./form.scss"
 import {createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import {auth, storage} from "../firebase/config";
+import {auth, db, storage} from "../firebase/config";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { setDoc } from "firebase/firestore";
-
+import { doc, setDoc } from "firebase/firestore"; 
+import { async } from "@firebase/util";
 
 const Register = () => {
   const [err, setErr ] = useState(false);
+  const navitive = useNavigate();
   const handleSubmit = async (e) =>{
     e.preventDefault();
     const displayName = e.target[0].value;
@@ -22,9 +23,9 @@ try {
   const res = await createUserWithEmailAndPassword(auth, email, password)
 
 
-const storageRef = ref(storage, displayName);
+  const storageRef = ref(storage, displayName);
 
-const uploadTask = uploadBytesResumable(storageRef, file);
+  const uploadTask = uploadBytesResumable(storageRef, file);
 
 // Register three observers:
 
@@ -39,16 +40,19 @@ uploadTask.on(
         photoURL: downloadURL
        });
        await setDoc(doc(db, "user", res.user.uid), {
-        uid: res.user.uid,
+         uid: res.user.uid,
          displayName,
          email,
          photoURL: downloadURL
        });
+
+       await setDoc(doc(db, "userChats", res.user.uid), {});
+       navitive("/");
     });
   }
 );
 
-} catch (error) {
+} catch (err) {
   setErr(true);
 }
   }
