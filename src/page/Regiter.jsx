@@ -7,11 +7,12 @@ import {createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {auth, db, storage} from "../firebase/config";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore"; 
-import { async } from "@firebase/util";
+
 
 const Register = () => {
   const [err, setErr ] = useState(false);
   const navitive = useNavigate();
+
   const handleSubmit = async (e) =>{
     e.preventDefault();
     const displayName = e.target[0].value;
@@ -30,7 +31,7 @@ try {
 // Register three observers:
 
 uploadTask.on(
-  (error) => {
+  (errol) => {
     setErr(true)
   }, 
   () => {
@@ -43,7 +44,7 @@ uploadTask.on(
          uid: res.user.uid,
          displayName,
          email,
-         photoURL: downloadURL
+         photoURL: downloadURL,
        });
 
        await setDoc(doc(db, "userChats", res.user.uid), {});
