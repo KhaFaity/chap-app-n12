@@ -11,6 +11,7 @@ const Message = () => {
       </div>
       <div className="messageContent">
         <p>Hello</p>
+        <span className='timeMessage'>00:00</span>
         {/* <img src={Add} alt="" /> */}
       </div>
     </div>
@@ -21,6 +22,7 @@ const Message = () => {
       </div>
       <div className="messageContent">
         <p>Hello</p>
+        <span className='timeMessage'>00:00</span>
         {/* <img src={Add} alt="" /> */}
       </div>
     </div>

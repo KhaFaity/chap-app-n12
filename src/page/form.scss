@@ -1,76 +1,75 @@
 .formContainer {
-    background-color: #e696ce;
-    height: 100vh;
+  background-color:  #F0B7A4;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .formWrapper {
+    background-color: white;
+    padding: 20px 60px;
+    border-radius: 45px;
     display: flex;
+    flex-direction: column;
+    gap: 10px;
     align-items: center;
-    justify-content: center;
-  
-    .formWrapper {
-      background-color: white;
-      padding: 20px 60px;
-      border-radius: 45px;
+
+    .logo {
+      color: #C18687;
+      font-weight: bold;
+      font-size: 24px;
+
+    }
+
+    .title {
+      color: #C18687;
+      font-size: 12px;
+    }
+
+    form {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      align-items: center;
-  
-      .logo {
-        color: #aa397f;
+      gap: 15px;
+      
+
+      input {
+        padding: 15px;
+        border: none;
+        width: 250px;
+        border-bottom: 1px solid #C18687;
+        border-radius: 25px;
+        &::placeholder {
+          color: rgb(175, 175, 175);
+        }
+      }
+
+      button {
+        background-color: #C18687;
+        color: white;
+        padding: 10px;
         font-weight: bold;
-        font-size: 24px;
-  
+        border: none;
+        cursor: pointer;
+        border-radius: 25px;
       }
-  
-      .title {
-        color: #8f4388;
-        font-size: 12px;
-      }
-  
-      form {
+
+      label {
         display: flex;
-        flex-direction: column;
-        gap: 15px;
-        
-  
-        input {
-          padding: 15px;
-          border: none;
-          width: 250px;
-          border-bottom: 1px solid #8f4388;
-          &::placeholder {
-            color: rgb(175, 175, 175);
-          }
-          border-radius: 25px;
-        }
-  
-        button {
-          background-color: #ca51b0;
-          color: white;
-          padding: 10px;
-          font-weight: bold;
-          border: none;
-          cursor: pointer;
-          border-radius: 25px;
-        }
-  
-        label {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          color: #8da4f1;
-          font-size: 12px;
-          cursor: pointer;
-  
-          img {
-            width: 32px;
-          }
-        }
-      }
-      p {
-        color: #5d5b8d;
+        align-items: center;
+        gap: 10px;
+        color: #C18687;
         font-size: 12px;
-        margin-top: 10px;
+        cursor: pointer;
+
+        img {
+          width: 32px;
+        }
       }
     }
+    p {
+      color: #5d5b8d;
+      font-size: 12px;
+      margin-top: 10px;
+    }
   }
-  
+}
