@@ -7,24 +7,22 @@ import {createUserWithEmailAndPassword, updateProfile, getAuth } from "firebase/
 import { auth, db, storage} from "../firebase/config";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore"; 
-import auth2 from "../firebase/config2";
 
 const Register = () => {
   const [err, setErr ] = useState(false);
   const navitive = useNavigate();
 
-  const [email] = useState('');
-  const [password] = useState('');
-  const send_EmailVerification =() => {
-    auth2.createUserWithEmailAndPassword(auth, email , password)
-      .then((userCredential)=>{
-          // send verification mail.
-        userCredential.user.sendEmailVerification();
-        // auth2.signOut();
-        alert("Email sent");
-      })
-      .catch(alert);
-  }
+  // const {email, password} = this.state;
+  // const send_EmailVerification =() => {
+  //   auth.createUserWithEmailAndPassword( email.trim() , password)
+  //     .then((userCredential)=>{
+  //         // send verification mail.
+  //       userCredential.user.sendEmailVerification();
+  //       auth.signOut();
+  //       alert("Email sent");
+  //     })
+  //     .catch(alert);
+  // }
   // function send_EmailVerification(){
   //   var user = auth2.currentUser;
   //   user = auth2.sendEmailVerification.then(function(){
@@ -42,13 +40,13 @@ const Register = () => {
 
 try {
   const res = await createUserWithEmailAndPassword(auth, email, password)
-                    // .then((userCredential) =>{
-                    //   //send verification mail.
-                    //   userCredential.user.sendEmailVerification();
-                    //   auth.signOut();
-                    //   alert("Email sent");
-                    // })
-                    // .catch(alert);
+                    .then((userCredential) =>{
+                      //send verification mail.
+                      userCredential.user.sendEmailVerification();
+                      auth.signOut();
+                      alert("Email sent");
+                    })
+                    .catch(alert);
 
   const storageRef = ref(storage, displayName);
 
@@ -96,16 +94,18 @@ uploadTask.on(
         <span className="title">Register</span>
         <form onSubmit={handleSubmit}>
           <input type="text" placeholder="Tên người dùng" />
-          <input type="email" placeholder="email"   />
-          <input type="password" placeholder="Mật khẩu"  />
+          <input type="email" placeholder="email"   /> 
+          {/* onChangeText={(email) => this.setState({email})} */}
+          <input type="password" placeholder="Mật khẩu"   />
+          {/* onChangeText={(password) => this.setState({password})} */}
           {/* <input type="password" placeholder="Nhập lại mật khẩu" /> */}
           <input required style={{ display: "none" }} type="file" id="file" />
           <label htmlFor="file">
             <img src={Add} alt="" />
             <span>Add an avatar</span>
           </label>
-          
-          <button onClick={send_EmailVerification()}>Đăng ký</button> 
+          {/* onClick={send_EmailVerification()} */}
+          <button >Đăng ký</button> 
           {err && <span>Đăng ký thất bại</span>}
         </form>
         <p>
